@@ -1,0 +1,239 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix c4g: <http://eccenca.com/c4gai-vocab/> .
+
+c4g:
+    a owl:Ontology ;
+    rdfs:label "Crypto4Graph-AI Vocabulary" ;
+    rdfs:comment "The Crypto4Graph-AI Vocabulary is used to describe supply chains"@en ;
+    owl:versionInfo "0.1" ;
+    vann:preferredNamespacePrefix "c4g" ;
+    vann:preferredNamespaceUri "http://eccenca.com/c4gai-vocab/" .
+
+c4g:Company
+    a rdfs:Class, owl:Class ;
+    rdfs:label "Company"@en ;
+    rdfs:comment "company entity"@en ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:Country
+    a rdfs:Class, owl:Class ;
+    rdfs:label "Country"@en ;
+    rdfs:comment "country entity"@en ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:RiskType
+    a rdfs:Class, owl:Class ;
+    rdfs:label "Risk Type"@en ;
+    rdfs:comment "classification of company risks"@en ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:AbstractRisk
+    a rdfs:Class, owl:Class ;
+    rdfs:label "Abstract Risk"@en ;
+    rdfs:comment "description of a theoretical company risk"@en ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:AbstractRisk_CountrySectorRelation
+    a rdfs:Class, owl:Class ;
+    rdfs:label "Abstract Risk (Country and Sector)"@en ;
+    rdfs:comment "description of a theoretical company risk based on a company's country and business sector"@en ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:CompanyRisk
+    a rdfs:Class, owl:Class ;
+    rdfs:label "Company Risk"@en ;
+    rdfs:comment "description of a specific risk affecting a company"@en ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:hasBusinessSector
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "has Business Sector"@en ;
+    rdfs:comment "business sector the company is active in"@en ;
+    rdfs:domain c4g:Company ;
+    rdfs:range skos:Concept ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:hasCompetitor
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "has Competitor"@en ;
+    rdfs:comment "Competitor relation"@en ;
+    rdfs:domain c4g:Company ;
+    rdfs:range c4g:Company ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:hasCustomer
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "has Customer"@en ;
+    rdfs:comment "Customer relation"@en ;
+    rdfs:domain c4g:Company ;
+    rdfs:range c4g:Company ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:hasDistributionPartner
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "has Distribution Partner"@en ;
+    rdfs:comment "Distribution Partner relation"@en ;
+    rdfs:domain c4g:Company ;
+    rdfs:range c4g:Company ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:hasEquityInvestmentPartner
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "has Equity Investment Partner"@en ;
+    rdfs:comment "Equity Investment Partner relation"@en ;
+    rdfs:domain c4g:Company ;
+    rdfs:range c4g:Company ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:hasInLicensingPartner
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "has In Licensing Partner"@en ;
+    rdfs:comment "In Licensing Partner relation"@en ;
+    rdfs:domain c4g:Company ;
+    rdfs:range c4g:Company ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:hasIntegratedProductOfferingPartner
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "has Integrated Product Offering Partner"@en ;
+    rdfs:comment "Integrated Product Offering Partner relation"@en ;
+    rdfs:domain c4g:Company ;
+    rdfs:range c4g:Company ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:hasInvestorPartner
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "has Investor Partner"@en ;
+    rdfs:comment "Investor Partner relation"@en ;
+    rdfs:domain c4g:Company ;
+    rdfs:range c4g:Company ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:hasJointVenturePartner
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "has Joint Venture Partner"@en ;
+    rdfs:comment "Joint Venture Partner relation"@en ;
+    rdfs:domain c4g:Company ;
+    rdfs:range c4g:Company ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:hasLicensingPartner
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "has Licensing Partner"@en ;
+    rdfs:comment "Licensing Partner relation"@en ;
+    rdfs:domain c4g:Company ;
+    rdfs:range c4g:Company ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:hasManufacturingPartner
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "has Manufacturing Partner"@en ;
+    rdfs:comment "Manufacturing Partner relation"@en ;
+    rdfs:domain c4g:Company ;
+    rdfs:range c4g:Company ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:hasMarketingPartner
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "has Marketing Partner"@en ;
+    rdfs:comment "Marketing Partner relation"@en ;
+    rdfs:domain c4g:Company ;
+    rdfs:range c4g:Company ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:hasOutLicensingPartner
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "has Out Licensing Partner"@en ;
+    rdfs:comment "Out Licensing Partner relation"@en ;
+    rdfs:domain c4g:Company ;
+    rdfs:range c4g:Company ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:hasPartner
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "has Partner"@en ;
+    rdfs:comment "Partner relation"@en ;
+    rdfs:domain c4g:Company ;
+    rdfs:range c4g:Company ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:hasResearchPartner
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "has Research Partner"@en ;
+    rdfs:comment "Research Partner relation"@en ;
+    rdfs:domain c4g:Company ;
+    rdfs:range c4g:Company ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:hasSupplier
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "has Supplier"@en ;
+    rdfs:comment "Supplier relation"@en ;
+    rdfs:domain c4g:Company ;
+    rdfs:range c4g:Company ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:hasTechnologyPartner
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "has Technology Partner"@en ;
+    rdfs:comment "Technology Partner relation"@en ;
+    rdfs:domain c4g:Company ;
+    rdfs:range c4g:Company ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:isoCountryCode
+    a rdfs:Property, owl:DatatypeProperty ;
+    rdfs:label "ISO Country Code"@en ;
+    rdfs:comment "company's country code"@en ;
+    rdfs:domain c4g:Company ;
+    rdfs:range rdfs:Literal ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:country
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "Home Country"@en ;
+    rdfs:comment "company's country"@en ;
+    rdfs:domain c4g:Company ;
+    rdfs:range c4g:Country ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:abstractRisk
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "Abstract Risk"@en ;
+    rdfs:comment "the abstract risk a company risk is based on"@en ;
+    rdfs:domain c4g:CompanyRisk ;
+    rdfs:range c4g:AbstractRisk ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:affectedCompany
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "Affected Company"@en ;
+    rdfs:comment "the company related to this risk"@en ;
+    rdfs:domain c4g:CompanyRisk ;
+    rdfs:range c4g:Company ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:relationAffected
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "Relation Affected"@en ;
+    rdfs:comment "the relation affected by this risk"@en ;
+    rdfs:domain c4g:CompanyRisk ;
+    rdfs:isDefinedBy c4g: .
+
