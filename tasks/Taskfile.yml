@@ -76,9 +76,7 @@ tasks:
   validation:
     deps:
       - task: validation:rdfunit-auto
-        vars: { INSTANCEFILE: '{{.ONTOLOGY_FILE}}', SCHEMAFILE: '{{.ONTOLOGY_FILE}}' }
       - task: validation:rdfunit-manual
-        vars: { SCHEMAFILE: '{{.ONTOLOGY_FILE}}' }
 
   inference:
     deps:
