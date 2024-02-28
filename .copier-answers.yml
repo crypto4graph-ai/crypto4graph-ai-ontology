@@ -1,0 +1,24 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+# Did you notice that NEVER EDIT MANUALLY part? [It is important](https://copier.readthedocs.io/en/stable/updating/#never-change-the-answers-file-manually).
+_commit: 0.2.1
+_src_path: gh:eccenca/ontology-pipeline-template
+cmemc_config_id: crypto4graph-ai.eccenca.dev
+git_push: true
+git_user_email: ontology-pipeline@bot.eccenca.com
+git_user_name: Ontology Pipeline Bot
+github_managed: true
+gitlab_managed: true
+instances: true
+instances_file_exists: false
+instances_graph_iri: http://data.example.org/
+ontology_file: vocab.ttl
+ontology_graph_iri: http://eccenca.com/c4gai-vocab/
+ontology_iri: http://eccenca.com/c4gai-vocab/
+ontology_prefix: 'c4g:'
+project_name: crypto4graph-ai ontology
+shape: true
+shape_base_iri: http://eccenca.com/c4gai-shapes/
+shape_base_prefix: 'c4g-sh:'
+shape_file: shapes.ttl
+shape_graph_iri: http://eccenca.com/c4gai-shapes/
+

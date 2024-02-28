@@ -1,0 +1,38 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+construct {
+  ?prop a rdf:Property ; # DatatypeProperty, ObjectProperty
+    rdfs:label ?label .
+    # domain, range
+}
+from <http://data.example.org/>
+from named <http://eccenca.com/c4gai-vocab/>
+from named <http://eccenca.com/c4gai-shapes/>
+WHERE {
+  ?s ?prop ?o .
+  optional { ?prop rdfs:label ?label }
+  filter regex(str(?class), "^http://eccenca.com/c4gai-vocab/")
+  filter not exists {
+    {
+    	graph <http://eccenca.com/c4gai-vocab/> {
+        {
+          ?sub sh:path ?prop .
+        } union {
+          ?prop a ?propertyType.
+        }
+      }
+    }
+    
+    union {
+    	graph <http://eccenca.com/c4gai-shapes/> {
+        {
+          ?sub sh:path ?prop .
+        } union {
+          ?prop a ?propertyType.
+        }
+      }
+    }
+    
+  }
+}

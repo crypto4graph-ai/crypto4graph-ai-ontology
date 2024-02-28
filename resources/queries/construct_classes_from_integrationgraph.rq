@@ -1,0 +1,38 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+construct {
+  ?class a rdfs:Class, owl:Class ;
+    rdfs:label ?label .
+}
+from <http://data.example.org/>
+from named <http://eccenca.com/c4gai-vocab/>
+from named <http://eccenca.com/c4gai-shapes/>
+WHERE {
+  ?s a ?class .
+  optional { ?class rdfs:label ?label }
+  filter regex(str(?class), "^http://eccenca.com/c4gai-vocab/")
+  filter not exists {
+    {
+    	graph <http://eccenca.com/c4gai-vocab/> {
+        {
+          ?sub sh:targetClass ?class .
+        } union {
+          ?class a ?classType.
+        }
+      }
+    }
+    
+    union {
+    	graph <http://eccenca.com/c4gai-shapes/> {
+        {
+          ?sub sh:targetClass ?class .
+        } union {
+          ?class a ?classType.
+        }
+      }
+    }
+    
+  }
+}
