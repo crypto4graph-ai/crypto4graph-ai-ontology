@@ -17,6 +17,7 @@
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix c4g: <http://eccenca.com/c4gai-vocab/> .
+@prefix dbpediaowl: <http://dbpedia.org/ontology/> .
 
 c4g:
     a owl:Ontology ;
@@ -29,42 +30,43 @@ c4g:
 c4g:Company
     a rdfs:Class, owl:Class ;
     rdfs:label "Company"@en ;
-    rdfs:comment "company entity"@en ;
+    rdfs:comment "Company entity"@en ;
     rdfs:isDefinedBy c4g: .
 
 c4g:Country
     a rdfs:Class, owl:Class ;
     rdfs:label "Country"@en ;
-    rdfs:comment "country entity"@en ;
+    rdfs:comment "Country entity"@en ;
     rdfs:isDefinedBy c4g: .
 
 c4g:RiskType
     a rdfs:Class, owl:Class ;
     rdfs:label "Risk Type"@en ;
-    rdfs:comment "classification of company risks"@en ;
+    rdfs:comment "Classification of company risks"@en ;
     rdfs:isDefinedBy c4g: .
 
 c4g:AbstractRisk
     a rdfs:Class, owl:Class ;
     rdfs:label "Abstract Risk"@en ;
-    rdfs:comment "description of a theoretical company risk"@en ;
+    rdfs:comment "Description of a theoretical company risk"@en ;
     rdfs:isDefinedBy c4g: .
 
 c4g:AbstractRisk_CountrySectorRelation
     a rdfs:Class, owl:Class ;
+    rdfs:subClassOf c4g:AbstractRisk ;
     rdfs:label "Abstract Risk (Country and Sector)"@en ;
-    rdfs:comment "description of a theoretical company risk based on a company's country and business sector"@en ;
+    rdfs:comment "Description of a theoretical company risk based on a company's country and business sector"@en ;
     rdfs:isDefinedBy c4g: .
 
 c4g:CompanyRisk
     a rdfs:Class, owl:Class ;
     rdfs:label "Company Risk"@en ;
-    rdfs:comment "description of a specific risk affecting a company"@en ;
+    rdfs:comment "Description of a specific risk affecting a company"@en ;
     rdfs:isDefinedBy c4g: .
 
 c4g:hasBusinessSector
     a rdfs:Property, owl:ObjectProperty ;
-    rdfs:label "has Business Sector"@en ;
+    rdfs:label "business sector"@en ;
     rdfs:comment "business sector the company is active in"@en ;
     rdfs:domain c4g:Company ;
     rdfs:range skos:Concept ;
@@ -208,7 +210,7 @@ c4g:isoCountryCode
 
 c4g:country
     a rdfs:Property, owl:ObjectProperty ;
-    rdfs:label "Home Country"@en ;
+    rdfs:label "residence country"@en ;
     rdfs:comment "company's country"@en ;
     rdfs:domain c4g:Company ;
     rdfs:range c4g:Country ;
@@ -216,7 +218,7 @@ c4g:country
 
 c4g:abstractRisk
     a rdfs:Property, owl:ObjectProperty ;
-    rdfs:label "Abstract Risk"@en ;
+    rdfs:label "abstract risk"@en ;
     rdfs:comment "the abstract risk a company risk is based on"@en ;
     rdfs:domain c4g:CompanyRisk ;
     rdfs:range c4g:AbstractRisk ;
@@ -224,7 +226,7 @@ c4g:abstractRisk
 
 c4g:affectedCompany
     a rdfs:Property, owl:ObjectProperty ;
-    rdfs:label "Affected Company"@en ;
+    rdfs:label "affected company"@en ;
     rdfs:comment "the company related to this risk"@en ;
     rdfs:domain c4g:CompanyRisk ;
     rdfs:range c4g:Company ;
@@ -236,4 +238,183 @@ c4g:relationAffected
     rdfs:comment "the relation affected by this risk"@en ;
     rdfs:domain c4g:CompanyRisk ;
     rdfs:isDefinedBy c4g: .
+
+c4g:riskType
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:label "type of risk"@en ;
+    rdfs:comment "the associated type of risk"@en ;
+    rdfs:domain c4g:AbstractRisk ;
+    rdfs:range c4g:RiskType ;
+    rdfs:isDefinedBy c4g: .
+
+#c4g:abstractRiskRelation
+#    a rdfs:Property, owl:ObjectProperty ;
+#    rdfs:label "relation filter (A->B)"@en ;
+#    rdfs:comment "relation between company A and B"@en ;
+#    rdfs:domain c4g:AbstractRisk_CountrySectorRelation ;
+#    rdfs:range owl:ObjectProperty ;
+#    rdfs:isDefinedBy c4g: .
+
+#c4g:abstractRiskCountryA
+#    a rdfs:Property, owl:ObjectProperty ;
+#    rdfs:label "country filter (A)"@en ;
+#    rdfs:comment "country of company A"@en ;
+#    rdfs:domain c4g:AbstractRisk_CountrySectorRelation ;
+#    rdfs:range c4g:Country ;
+#    rdfs:isDefinedBy c4g: .
+
+#c4g:abstractRiskCountryB
+#    a rdfs:Property, owl:ObjectProperty ;
+#    rdfs:label "country filter (B)"@en ;
+#    rdfs:comment "country of company B"@en ;
+#    rdfs:domain c4g:AbstractRisk_CountrySectorRelation ;
+#    rdfs:range c4g:Country ;
+#    rdfs:isDefinedBy c4g: .
+
+#c4g:abstractRiskSectorA
+#    a rdfs:Property, owl:ObjectProperty ;
+#    rdfs:label "business sector filter (A)"@en ;
+#    rdfs:comment "business sector of company A"@en ;
+#    rdfs:domain c4g:AbstractRisk_CountrySectorRelation ;
+#    rdfs:range skos:Concept ;
+#    rdfs:isDefinedBy c4g: .
+
+#c4g:abstractRiskSectorB
+#    a rdfs:Property, owl:ObjectProperty ;
+#    rdfs:label "business sector filter (B)"@en ;
+#    rdfs:comment "business sector of company B"@en ;
+#    rdfs:domain c4g:AbstractRisk_CountrySectorRelation ;
+#    rdfs:range skos:Concept ;
+#    rdfs:isDefinedBy c4g: .
+
+dbpediaowl:currency
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:comment "currency"@en ;
+    rdfs:domain c4g:Country ;
+    rdfs:isDefinedBy dbpediaowl: .
+
+dbpediaowl:giniCoefficient
+    a rdfs:Property, owl:DatatypeProperty ;
+    rdfs:comment "Gini coefficient"@en ;
+    rdfs:domain c4g:Country ;
+    rdfs:range xsd:float ;
+    rdfs:isDefinedBy dbpediaowl: .
+
+dbpediaowl:governmentType
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:comment "government type"@en ;
+    rdfs:domain c4g:Country ;
+    rdfs:isDefinedBy dbpediaowl: .
+
+dbpediaowl:humanDevelopmentIndex
+    a rdfs:Property, owl:DatatypeProperty ;
+    rdfs:comment "Human Development Index (HDI)"@en ;
+    rdfs:domain c4g:Country ;
+    rdfs:range xsd:float ;
+    rdfs:isDefinedBy dbpediaowl: .
+
+dbpediaowl:populationDensity
+    a rdfs:Property, owl:DatatypeProperty ;
+    rdfs:comment "population density"@en ;
+    rdfs:domain c4g:Country ;
+    rdfs:range xsd:integer ;
+    rdfs:isDefinedBy dbpediaowl: .
+
+dbpediaowl:populationTotal
+    a rdfs:Property, owl:DatatypeProperty ;
+    rdfs:comment "population total"@en ;
+    rdfs:domain c4g:Country ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:isDefinedBy dbpediaowl: .
+
+dbpediaowl:timeZone
+    a rdfs:Property, owl:ObjectProperty ;
+    rdfs:comment "time zone"@en ;
+    rdfs:domain c4g:Country ;
+    rdfs:isDefinedBy dbpediaowl: .
+
+c4g:FoodRiskScore
+    a rdfs:Property, owl:DatatypeProperty ;
+    rdfs:comment "Food Risk Score"@en ;
+    rdfs:domain c4g:Country ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:NaturalDisastersScore
+    a rdfs:Property, owl:DatatypeProperty ;
+    rdfs:comment "Natural Disasters Score"@en ;
+    rdfs:domain c4g:Country ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:RapidPopulationGrowthScore
+    a rdfs:Property, owl:DatatypeProperty ;
+    rdfs:comment "Rapid Population Growth Score"@en ;
+    rdfs:domain c4g:Country ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:WaterRiskScore
+    a rdfs:Property, owl:DatatypeProperty ;
+    rdfs:comment "Water Risk Score"@en ;
+    rdfs:domain c4g:Country ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:alpha2Code
+    a rdfs:Property, owl:DatatypeProperty ;
+    rdfs:comment "alpha2Code"@en ;
+    rdfs:domain c4g:Country ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:alpha3Code
+    a rdfs:Property, owl:DatatypeProperty ;
+    rdfs:comment "alpha3Code"@en ;
+    rdfs:domain c4g:Country ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:ccTLD
+    a rdfs:Property, owl:DatatypeProperty ;
+    rdfs:comment "top-level domain"@en ;
+    rdfs:domain c4g:Country ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:etrScore
+    a rdfs:Property, owl:DatatypeProperty ;
+    rdfs:comment "ETR Score"@en ;
+    rdfs:domain c4g:Country ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:sovereignty
+    a rdfs:Property, owl:DatatypeProperty ;
+    rdfs:comment "sovereignty"@en ;
+    rdfs:domain c4g:Country ;
+    rdfs:range xsd:string ;
+    rdfs:isDefinedBy c4g: .
+
+c4g:unitedNationsMemberState
+    a rdfs:Property, owl:DatatypeProperty ;
+    rdfs:comment "member of the United Nations"@en ;
+    rdfs:domain c4g:Country ;
+    rdfs:range xsd:boolean ;
+    rdfs:isDefinedBy c4g: .
+
+geo:lat
+    a rdfs:Property, owl:DatatypeProperty ;
+    rdfs:comment "latitude"@en ;
+    rdfs:domain c4g:Country ;
+    rdfs:range xsd:decimal ;
+    rdfs:isDefinedBy geo: .
+
+geo:long
+    a rdfs:Property, owl:DatatypeProperty ;
+    rdfs:comment "latitude"@en ;
+    rdfs:domain c4g:Country ;
+    rdfs:range xsd:decimal ;
+    rdfs:isDefinedBy geo: .
+
 
